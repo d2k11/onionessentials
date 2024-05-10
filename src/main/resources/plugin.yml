@@ -1,0 +1,13 @@
+name: onionessentials
+version: '${version}'
+main: net.onionmc.onionessentials.OnionEssentials
+api-version: '1.20'
+load: STARTUP
+commands:
+  reset:
+  tp:
+  say:
+  help:
+  color:
+  idle:
+  yell:
