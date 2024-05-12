@@ -28,7 +28,9 @@ public final class OnionEssentials extends JavaPlugin {
         registerCommand("color", new ColorCommand());
         registerCommand("idle", new IdleCommand());
         registerCommand("yell", new YellCommand());
-
+        registerCommand("hide", new HideCommand());
+        registerCommand("channel", new ChannelCommand());
+        registerCommand("list", new ListCommand());
     }
 
     @Override

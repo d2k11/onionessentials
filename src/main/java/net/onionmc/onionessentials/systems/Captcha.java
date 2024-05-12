@@ -33,9 +33,7 @@ public class Captcha {
             }
             // If it is visible, what formatting should it have?
             if(shouldBeVisible) {
-                capChar = "&r";
-                if(rand(0, 10) == 0) capChar += "&o";
-                if(rand(0, 10) == 0) capChar += "&m";
+                capChar = "&r&e";
             }
             // Otherwise it's obfuscated text
             else {
@@ -94,7 +92,7 @@ public class Captcha {
         player.setInvisible(true);
         for(int xy = 0; xy < 100; xy++) player.sendMessage("");
         player.sendMessage(Log.format("&7&owelcome to &e&oonionmc"));
-        Bukkit.getServer().broadcast(Log.format(Usernames.getSettings(player.getName()).color + Usernames.get(player.getName()) + " &a»"));
+        Bukkit.getServer().broadcast(Log.format("&7<0> &7&oServer Message &r&a» " + Usernames.getSettings(player.getName()).color + Usernames.get(player.getName()) + " &7connected."));
     }
 
     public static boolean isJailed(String username) {

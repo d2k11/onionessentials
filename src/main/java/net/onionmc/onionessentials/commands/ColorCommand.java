@@ -29,9 +29,9 @@ public class ColorCommand implements CommandExecutor {
             return true;
         }
 
-        List<String> validColors = List.of("green", "aqua", "red", "gray", "black", "white");
+        List<String> validColors = List.of("green", "aqua", "red", "gray", "black", "white", "orange", "yellow");
         if(!validColors.contains(strings[0].toLowerCase())) {
-            player.sendMessage(Log.format("&cInvalid color code."));
+            player.sendMessage(Log.format("&cInvalid color code. Options: &agreen, &baqua, &cred, &7gray, &0black, &fwhite, &6orange, &eyellow."));
             return true;
         }
 
@@ -64,6 +64,12 @@ public class ColorCommand implements CommandExecutor {
         if(code.equals("&f")) {
             colorName = "white";
         }
+        if(code.equals("&6")) {
+            colorName = "orange";
+        }
+        if(code.equals("&e")) {
+            colorName = "yellow";
+        }
         return colorName;
     }
 
@@ -86,6 +92,12 @@ public class ColorCommand implements CommandExecutor {
         }
         if(color.equals("white")) {
             code = "&f";
+        }
+        if(color.equals("orange")) {
+            code = "&6";
+        }
+        if(color.equals("yellow")) {
+            code = "&e";
         }
         return code;
     }

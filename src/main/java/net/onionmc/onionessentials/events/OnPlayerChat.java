@@ -27,16 +27,20 @@ public class OnPlayerChat implements Listener {
         }
 
         UserSettings settings = Usernames.getSettings(event.getPlayer().getName());
+        int channel = settings.channel;
 
         for(Player player : Bukkit.getOnlinePlayers()) {
+            if(Captcha.isJailed(player.getName())) continue;
+            UserSettings playerSettings = Usernames.getSettings(player.getName());
+            if(playerSettings.channel != channel && channel != 0) continue;
             if(event.getMessage().contains("@" + Usernames.get(player.getName()).split(" ")[1])) {
-                player.sendMessage(Log.format(settings.color + Usernames.get(event.getPlayer().getName()) + " &e» &f" + event.getMessage()));
+                player.sendMessage(Log.format("&7<"+channel+"> " + settings.color + Usernames.get(event.getPlayer().getName()) + " &e» &f" + event.getMessage()));
             }
             else {
-                player.sendMessage(Log.format(settings.color + Usernames.get(event.getPlayer().getName()) + " &8» &f" + event.getMessage()));
+                player.sendMessage(Log.format("&7<"+channel+"> " + settings.color + Usernames.get(event.getPlayer().getName()) + " &8» &f" + event.getMessage()));
             }
         }
 
-        Bukkit.getConsoleSender().sendMessage(Usernames.get(event.getPlayer().getName()) + " » " + event.getMessage());
+        Bukkit.getConsoleSender().sendMessage("<"+channel+"> " + Usernames.get(event.getPlayer().getName()) + " » " + event.getMessage());
     }
 }

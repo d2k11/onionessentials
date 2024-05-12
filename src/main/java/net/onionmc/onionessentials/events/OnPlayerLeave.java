@@ -15,7 +15,7 @@ public class OnPlayerLeave implements Listener {
     public void onPlayerLeave(PlayerQuitEvent event) {
         event.quitMessage(null);
         if(!Captcha.isJailed(event.getPlayer().getName())) {
-            Bukkit.getServer().broadcast(Log.format(Usernames.getSettings(event.getPlayer().getName()).color + Usernames.get(event.getPlayer().getName()) + " &4»"));
+            Bukkit.getServer().broadcast(Log.format("&7<0> &7&oServer Message &r&4» " + Usernames.getSettings(event.getPlayer().getName()).color + Usernames.get(event.getPlayer().getName()) + " &7disconnected."));
         }
     }
 }

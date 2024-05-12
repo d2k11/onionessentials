@@ -11,3 +11,6 @@ commands:
   color:
   idle:
   yell:
+  hide:
+  channel:
+  list:

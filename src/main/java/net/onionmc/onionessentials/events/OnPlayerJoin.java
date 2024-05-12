@@ -1,6 +1,7 @@
 package net.onionmc.onionessentials.events;
 
 import net.onionmc.onionessentials.Log;
+import net.onionmc.onionessentials.models.UserSettings;
 import net.onionmc.onionessentials.systems.Captcha;
 import net.onionmc.onionessentials.systems.Usernames;
 import org.bukkit.Bukkit;
@@ -20,13 +21,6 @@ public class OnPlayerJoin implements Listener
         Player player = event.getPlayer();
         Location previous = player.getLocation();
 
-        for(Player onlinePlayer : player.getServer().getOnlinePlayers()) {
-            for(Player onlinePlayer2 : player.getServer().getOnlinePlayers()) {
-                onlinePlayer2.hidePlayer(onlinePlayer);
-                onlinePlayer.hidePlayer(onlinePlayer2);
-            }
-        }
-
         Usernames.register(player.getName());
         Usernames.hide(player);
 
@@ -42,9 +36,22 @@ public class OnPlayerJoin implements Listener
         player.sendMessage(Log.format(challengeString));
         player.sendMessage("");
         player.sendMessage(Log.format("&7&m----------------------------------------"));
-        player.sendMessage(Log.format("&7Type the unobfuscated text to chat and enter the server."));
+        player.sendMessage(Log.format("&7Type the yellow text to chat and enter the server."));
         player.sendMessage(Log.format("&7&m----------------------------------------"));
         player.sendMessage("");
+
+        for(Player onlinePlayer : player.getServer().getOnlinePlayers()) {
+            for(Player onlinePlayer2 : player.getServer().getOnlinePlayers()) {
+                UserSettings settings = Usernames.getSettings(onlinePlayer.getName());
+                UserSettings settings2 = Usernames.getSettings(onlinePlayer2.getName());
+                if(!settings.visible) {
+                    onlinePlayer2.hidePlayer(onlinePlayer);
+                }
+                if(!settings2.visible) {
+                    onlinePlayer.hidePlayer(onlinePlayer2);
+                }
+            }
+        }
 
         Captcha.jail(player.getName(), solveString, previous);
     }

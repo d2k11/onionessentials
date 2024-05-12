@@ -14,7 +14,7 @@ import java.util.List;
 
 public class OnCommandCompletion implements Listener {
 
-    public List<String> allowedCommands = List.of("tp", "reset", "kill", "help", "color", "idle", "yell");
+    public List<String> allowedCommands = List.of("tp", "reset", "kill", "help", "color", "idle", "yell", "hide", "channel", "list");
     @EventHandler
     public void onChatTab(PlayerCommandSendEvent event) {
         event.getCommands().clear();
